@@ -1,14 +1,15 @@
 local player = game.Players.LocalPlayer
 
-function CreateTab(name, position, title, size)
+
+function CreateTab(params)
     local playerGui = player:WaitForChild("PlayerGui")
     local screenGui = Instance.new("ScreenGui")
     screenGui.Parent = playerGui
 
     local tabFrame = Instance.new("Frame")
-    tabFrame.Name = name
-    tabFrame.Position = position
-    tabFrame.Size = size or UDim2.new(0, 200, 0, 50)
+    tabFrame.Name = params.TABNAME
+    tabFrame.Position = params.POSITION
+    tabFrame.Size = params.SIZE or UDim2.new(0, 200, 0, 50)
     tabFrame.BackgroundTransparency = 0.5
     tabFrame.BackgroundColor3 = Color3.new(0, 0, 0)
 
@@ -26,7 +27,7 @@ function CreateTab(name, position, title, size)
     titleLabel.Parent = tabFrame
     titleLabel.Size = UDim2.new(1, 0, 0, 20)
     titleLabel.Position = UDim2.new(0, 0, 0, 5)
-    titleLabel.Text = title
+    titleLabel.Text = params.NAME
     titleLabel.TextSize = 32
     titleLabel.Font = Enum.Font.DenkOne
     titleLabel.TextColor3 = Color3.new(1, 1, 1)
@@ -39,14 +40,18 @@ function CreateTab(name, position, title, size)
     return tabFrame
 end
 
-function CreateToggle(name, callback, parentTab, position, defaultValue)
+
+
+
+
+function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
-    toggleButton.Name = name
-    toggleButton.Parent = parentTab
-    toggleButton.Position = position or UDim2.new(0, 0, 0, 0)
+    toggleButton.Name = params.Name
+    toggleButton.Parent = params.ParentTab
+    toggleButton.Position = params.Position or UDim2.new(0, 0, 0, 0)
     toggleButton.Size = UDim2.new(0, 200, 0, 30)
     toggleButton.BackgroundTransparency = 1
-    toggleButton.Text = name
+    toggleButton.Text = params.Name
     toggleButton.TextSize = 24
     toggleButton.Font = Enum.Font.DenkOne
     toggleButton.TextColor3 = Color3.new(1, 1, 1)
@@ -67,18 +72,19 @@ function CreateToggle(name, callback, parentTab, position, defaultValue)
         end
     end
 
-    local isToggled = toggleStates[name] or defaultValue or false
+    local isToggled = toggleStates[params.Name] or params.DefaultValue or false
 
     toggleButton.MouseButton1Click:Connect(function()
         isToggled = not isToggled
-        callback(isToggled)
+        params.Callback(isToggled)
 
         toggleButton.TextColor3 = isToggled and Color3.new(0.5, 0, 0.8) or Color3.new(1, 1, 1)
         toggleButton.BackgroundColor3 = isToggled and Color3.new(0.2, 0.2, 0.2) or Color3.new(0, 0, 0)
 
-        toggleStates[name] = isToggled
+        toggleStates[params.Name] = isToggled
         writefile(filePath, game.HttpService:JSONEncode(toggleStates))
     end)
 
     return toggleButton
 end
+
