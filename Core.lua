@@ -59,11 +59,6 @@ function CreateToggle(params)
     toggleButton.BackgroundTransparency = 0.5
     toggleButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Set default background color
 
-    local uiStroke = Instance.new("UIStroke")
-    uiStroke.Thickness = 2
-    uiStroke.Color = Color3.new(1, 1, 1) -- Set default stroke color (white)
-    uiStroke.Parent = toggleButton
-
     local uiCorner = Instance.new("UICorner")
     uiCorner.CornerRadius = UDim.new(0, 8)
     uiCorner.Parent = toggleButton
