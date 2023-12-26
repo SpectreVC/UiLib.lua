@@ -78,7 +78,7 @@ note: I will have to add more stuff to this, because not every dev necessarily w
 
 ```
 
-** Note: The UiLib Is In Early Beta, I Will Add Alot More To It, My Plan on The Future Is To add Dropdowns, Themeses, Sliders, more customization to tab Toggle **
+**Note: The UiLib Is In Early Beta, I Will Add Alot More To It, My Plan on The Future Is To add Dropdowns, Themeses, Sliders, more customization to tab Toggle**
 
 
 
