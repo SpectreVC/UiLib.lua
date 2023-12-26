@@ -70,36 +70,43 @@ function CreateToggle(params)
 end
 
 
+-- Function to create a tab toggle
 function CreateTabToggle(params)
-    local button = Instance.new("TextButton")
-    button.Name = "ToggleTabsButton"
-    button.Parent = screenGui  -- Make sure to have screenGui defined
-    button.Position = params.Position or UDim2.new(0.95, 0, 0.4, 0)
-    button.Size = params.Size or UDim2.new(0, 80, 0, 40)
-    button.BackgroundTransparency = 0.5
-    button.BackgroundColor3 = Color3.new(0, 0, 0)
-    button.Text = "VC"
-    button.TextSize = 18
-    button.Font = Enum.Font.DenkOne
-    button.TextColor3 = Color3.new(1, 1, 1)
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = player.PlayerGui
+
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Name = "TabToggle"
+    toggleButton.Parent = screenGui
+    toggleButton.AnchorPoint = Vector2.new(1, 0.5)
+    toggleButton.Position = params.Position or UDim2.new(0.95, 0, 0.4, 0)
+    toggleButton.Size = params.Size or UDim2.new(0, 80, 0, 40)
+    toggleButton.BackgroundTransparency = 0.5
+    toggleButton.BackgroundColor3 = Color3.new(0, 0, 0)
+    toggleButton.Text = "VC"
+    toggleButton.TextSize = 18
+    toggleButton.Font = Enum.Font.DenkOne
+    toggleButton.TextColor3 = Color3.new(1, 1, 1)
 
     local uiStroke = Instance.new("UIStroke")
     uiStroke.Thickness = 1
     uiStroke.Color = Color3.new(0, 0, 0)
-    uiStroke.Parent = button
+    uiStroke.Parent = toggleButton
 
     local uiCorner = Instance.new("UICorner")
     uiCorner.CornerRadius = UDim.new(0, 8)
-    uiCorner.Parent = button
+    uiCorner.Parent = toggleButton
 
-    local tabEnabled = false
+    local tabsEnabled = true 
 
-    button.MouseButton1Click:Connect(function()
-        tabEnabled = not tabEnabled
-        params.Callback(tabEnabled)
+    toggleButton.MouseButton1Click:Connect(function()
+        tabsEnabled = not tabsEnabled
+        params.Callback(tabsEnabled)
+
+        toggleButton.TextColor3 = tabsEnabled and Color3.new(1, 1, 1) or Color3.new(0.5, 0, 0.8)
     end)
 
-    return button
+    toggleButton.Visible = true 
+
+    return toggleButton
 end
-
-
