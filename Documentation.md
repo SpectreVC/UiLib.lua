@@ -30,11 +30,13 @@ POSITION ( where you want ur tab to be )
 NAME ( name of the tittle )
 SIZE ( the size of the tab )
 ]]
+```
+
 
 # Creating a Tab #
 
-```
 
+```
 local toggle = CreateToggle({
     Name = "Toggle1",
     ParentTab = myTab,
