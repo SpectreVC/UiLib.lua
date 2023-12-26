@@ -3,7 +3,7 @@
 
 # Booting The Library #
 
-To Boot The VoetexUi Library, Put The Loadstring In Ur VS Code Or Executor.
+**To Boot The VortexUi Library, Put The Loadstring In Ur VS Code Or Executor.**
 
 ```
 
@@ -11,7 +11,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/SpectreVC/UiLib.lua/C
 
 ```
 
-This Is Necessary, If You Do Not Have The Loadstring, It Won't Work. 
+**This Is Necessary, If You Do Not Have The Loadstring, It Won't Work.**
 
 
 # Creating a Tab #
