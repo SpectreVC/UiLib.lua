@@ -49,6 +49,7 @@ end
 
 
 --Toggle
+-- Function to create a toggle
 function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
     toggleButton.Name = params.Name
@@ -60,9 +61,8 @@ function CreateToggle(params)
     local gradient = Instance.new("UIGradient")
     gradient.Rotation = 90
     gradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
-        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(30, 30, 60)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 70))
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),  -- White when off
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(148, 0, 211))  -- Purple when on
     }
     gradient.Parent = toggleButton
 
@@ -102,8 +102,8 @@ function CreateToggle(params)
         isToggled = not isToggled
         params.Callback(isToggled)
 
-        toggleButton.TextColor3 = isToggled and Color3.new(0.5, 0, 0.8) or Color3.new(1, 1, 1)
-        toggleButton.BackgroundColor3 = isToggled and Color3.new(0.2, 0.2, 0.2) or Color3.new(0, 0, 0)
+        toggleButton.TextColor3 = isToggled and Color3.new(1, 1, 1) or Color3.new(0, 0, 0)
+        toggleButton.BackgroundColor3 = isToggled and Color3.new(0.5, 0, 0.8) or Color3.new(1, 1, 1)
 
         toggleStates[params.Name] = isToggled
         writefile(filePath, game.HttpService:JSONEncode(toggleStates))
