@@ -37,10 +37,11 @@ SIZE ( the size of the tab )
 
 
 ```
-local toggle = CreateToggle({
+CreateToggle({
     Name = "Toggle1",
     ParentTab = myTab,
     Position = UDim2.new(0, 10, 0, 60),
+    DefaultValue = false,
     Callback = function(isToggled)
         print("Toggle1 is now:", isToggled)
     end
@@ -50,6 +51,7 @@ local toggle = CreateToggle({
 Name ( the Name Of the Toggle )
 ParentTab ( To What Tab the Toggle Is Parented  )
 Position ( The Position where The Toggle Will Be On The Tab )
+DefaultValue ( The starting Value of the toggle )
 Callback ( you know what a callback is Sherlock )
 ]]
 
@@ -59,15 +61,20 @@ Callback ( you know what a callback is Sherlock )
 
 
 ```
-
-
 CreateTabToggle({
     Position = UDim2.new(0.95, 0, 0.4, 0),
     Size = UDim2.new(0, 80, 0, 40),
     Callback = function(tabsEnabled)
-        print("Tabs are now:", tabsEnabled and "enabled" or "disabled")
+        if tabsEnabled then
+            myTab.Visible = true
+            print("Tabs Enabled!")
+        else
+            myTab.Visible = false
+            print("Tabs Disabled!")
+        end
     end
 })
+
 
 --[[
 Position ( Where The Tab Lock Is Going To Be )
