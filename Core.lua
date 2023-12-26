@@ -1,4 +1,4 @@
--- Function to create a tab
+--Tab
 function CreateTab(params)
     local playerGui = player:WaitForChild("PlayerGui")
     local screenGui = Instance.new("ScreenGui")
@@ -47,7 +47,7 @@ function CreateTab(params)
 end
 
 
--- Function to create a toggle
+--Toggle
 function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
     toggleButton.Name = params.Name
@@ -112,7 +112,7 @@ function CreateToggle(params)
 end
 
 
--- Function to create a tab toggle
+-- TabToggle
 function CreateTabToggle(params)
     local screenGui = Instance.new("ScreenGui")
     screenGui.Parent = player.PlayerGui
