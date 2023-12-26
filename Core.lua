@@ -50,18 +50,18 @@ end
 
 
 -- Function to create a toggle
--- Function to create a toggle
 function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
     toggleButton.Name = params.Name
     toggleButton.Parent = params.ParentTab
     toggleButton.Position = params.Position or UDim2.new(0, 0, 0, 0)
     toggleButton.Size = UDim2.new(0, 200, 0, 30)
-    toggleButton.BackgroundTransparency = 1
+    toggleButton.BackgroundTransparency = 0.5
+    toggleButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Set default background color
 
     local uiStroke = Instance.new("UIStroke")
     uiStroke.Thickness = 2
-    uiStroke.Color = Color3.new(0, 0, 0)
+    uiStroke.Color = Color3.new(1, 1, 1) -- Set default stroke color (white)
     uiStroke.Parent = toggleButton
 
     local uiCorner = Instance.new("UICorner")
