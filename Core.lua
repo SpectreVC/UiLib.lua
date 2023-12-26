@@ -50,6 +50,7 @@ end
 
 
 -- Function to create a toggle
+-- Function to create a toggle
 function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
     toggleButton.Name = params.Name
@@ -57,15 +58,6 @@ function CreateToggle(params)
     toggleButton.Position = params.Position or UDim2.new(0, 0, 0, 0)
     toggleButton.Size = UDim2.new(0, 200, 0, 30)
     toggleButton.BackgroundTransparency = 1
-
-    local gradient = Instance.new("UIGradient")
-    gradient.Rotation = 90
-    gradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
-        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(30, 30, 60)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 70))
-    }
-    gradient.Parent = toggleButton
 
     local uiStroke = Instance.new("UIStroke")
     uiStroke.Thickness = 2
