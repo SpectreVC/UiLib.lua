@@ -33,7 +33,7 @@ SIZE ( the size of the tab )
 ```
 
 
-# Creating a Tab #
+# Creating a Toggle #
 
 
 ```
@@ -55,7 +55,26 @@ Callback ( you know what a callback is Sherlock )
 
 ```
 
+# Creating a Tab Toggle #
 
+
+```
+
+
+CreateTabToggle({
+    Position = UDim2.new(0.95, 0, 0.4, 0),
+    Size = UDim2.new(0, 80, 0, 40),
+    Callback = function(tabsEnabled)
+        print("Tabs are now:", tabsEnabled and "enabled" or "disabled")
+    end
+})
+
+--[[
+Position ( Where The Tab Lock Is Going To Be )
+Size ( The Size Of The TabToggle )
+Callback ( you know what a callback is Sherlock)
+note: I will have to add more stuff to this, because not every dev necessarily wants the toggle to have "VC" as a text
+]]
 
 
 
