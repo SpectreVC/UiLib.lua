@@ -1,5 +1,6 @@
 local player = game.Players.LocalPlayer
 --Tab
+
 function CreateTab(params)
     local playerGui = player:WaitForChild("PlayerGui")
     local screenGui = Instance.new("ScreenGui")
@@ -77,7 +78,7 @@ function CreateToggle(params)
     toggleButton.Text = params.Name
     toggleButton.TextSize = 24
     toggleButton.Font = Enum.Font.DenkOne
-    toggleButton.TextColor3 = Color3.new(0, 0, 0)  -- White when off
+    toggleButton.TextColor3 = Color3.new(1, 1, 1)  -- White when off
     toggleButton.TextStrokeTransparency = 1
 
     local filePath = "VortexClientSV.json"
@@ -110,6 +111,7 @@ function CreateToggle(params)
 
     return toggleButton
 end
+
 
 
 -- TabToggle
