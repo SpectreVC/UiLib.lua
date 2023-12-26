@@ -1,3 +1,7 @@
+local player = game.Players.LocalPlayer
+
+
+
 --Tab
 function CreateTab(params)
     local playerGui = player:WaitForChild("PlayerGui")
