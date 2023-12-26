@@ -76,6 +76,9 @@ Callback ( you know what a callback is Sherlock)
 note: I will have to add more stuff to this, because not every dev necessarily wants the toggle to have "VC" as a text
 ]]
 
+```
+
+** Note: The UiLib Is In Early Beta, I Will Add Alot More To It, My Plan on The Future Is To add Dropdowns, Themeses, Sliders, more customization to tab Toggle **
 
 
 
