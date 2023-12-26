@@ -1,6 +1,4 @@
-local player = game.Players.LocalPlayer
-
-
+-- Function to create a tab
 function CreateTab(params)
     local playerGui = player:WaitForChild("PlayerGui")
     local screenGui = Instance.new("ScreenGui")
@@ -49,6 +47,7 @@ function CreateTab(params)
 end
 
 
+-- Function to create a toggle
 function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
     toggleButton.Name = params.Name
@@ -56,14 +55,57 @@ function CreateToggle(params)
     toggleButton.Position = params.Position or UDim2.new(0, 0, 0, 0)
     toggleButton.Size = UDim2.new(0, 200, 0, 30)
     toggleButton.BackgroundTransparency = 1
+
+    local gradient = Instance.new("UIGradient")
+    gradient.Rotation = 90
+    gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(30, 30, 60)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 70))
+    }
+    gradient.Parent = toggleButton
+
+    local uiStroke = Instance.new("UIStroke")
+    uiStroke.Thickness = 2
+    uiStroke.Color = Color3.new(0, 0, 0)
+    uiStroke.Parent = toggleButton
+
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 8)
+    uiCorner.Parent = toggleButton
+
     toggleButton.Text = params.Name
     toggleButton.TextSize = 24
     toggleButton.Font = Enum.Font.DenkOne
     toggleButton.TextColor3 = Color3.new(1, 1, 1)
     toggleButton.TextStrokeTransparency = 1
+
+    local filePath = "VortexClientSV.json"
+    local toggleStates = {}
+
+    local fileExists = pcall(readfile, filePath)
+
+    if fileExists then
+        local fileContent = readfile(filePath)
+        if fileContent then
+            local success, decodedContent = pcall(game.HttpService.JSONDecode, game.HttpService, fileContent)
+            if success and decodedContent then
+                toggleStates = decodedContent
+            end
+        end
+    end
+
+    local isToggled = toggleStates[params.Name] or params.DefaultValue or false
+
     toggleButton.MouseButton1Click:Connect(function()
-        params.Callback(not toggleButton:IsA("TextButton") or not toggleButton:IsA(toggleButton, "Pressed"))
-        toggleButton.TextColor3 = toggleButton:IsA(toggleButton, "Pressed") and Color3.new(0.5, 0, 0.8) or Color3.new(1, 1, 1)
+        isToggled = not isToggled
+        params.Callback(isToggled)
+
+        toggleButton.TextColor3 = isToggled and Color3.new(0.5, 0, 0.8) or Color3.new(1, 1, 1)
+        toggleButton.BackgroundColor3 = isToggled and Color3.new(0.2, 0.2, 0.2) or Color3.new(0, 0, 0)
+
+        toggleStates[params.Name] = isToggled
+        writefile(filePath, game.HttpService:JSONEncode(toggleStates))
     end)
 
     return toggleButton
@@ -81,12 +123,16 @@ function CreateTabToggle(params)
     toggleButton.AnchorPoint = Vector2.new(1, 0.5)
     toggleButton.Position = params.Position or UDim2.new(0.95, 0, 0.4, 0)
     toggleButton.Size = params.Size or UDim2.new(0, 80, 0, 40)
-    toggleButton.BackgroundTransparency = 0.5
-    toggleButton.BackgroundColor3 = Color3.new(0, 0, 0)
-    toggleButton.Text = "VC"
-    toggleButton.TextSize = 18
-    toggleButton.Font = Enum.Font.DenkOne
-    toggleButton.TextColor3 = Color3.new(1, 1, 1)
+    toggleButton.BackgroundTransparency = 1
+
+    local gradient = Instance.new("UIGradient")
+    gradient.Rotation = 90
+    gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(30, 30, 60)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 70))
+    }
+    gradient.Parent = toggleButton
 
     local uiStroke = Instance.new("UIStroke")
     uiStroke.Thickness = 1
@@ -97,7 +143,7 @@ function CreateTabToggle(params)
     uiCorner.CornerRadius = UDim.new(0, 8)
     uiCorner.Parent = toggleButton
 
-    local tabsEnabled = true 
+    local tabsEnabled = true  -- Initial state, tabs are enabled
 
     toggleButton.MouseButton1Click:Connect(function()
         tabsEnabled = not tabsEnabled
@@ -106,7 +152,7 @@ function CreateTabToggle(params)
         toggleButton.TextColor3 = tabsEnabled and Color3.new(1, 1, 1) or Color3.new(0.5, 0, 0.8)
     end)
 
-    toggleButton.Visible = true 
+    toggleButton.Visible = true  -- Ensure the toggle is initially visible
 
     return toggleButton
 end
