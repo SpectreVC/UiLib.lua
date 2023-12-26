@@ -48,7 +48,6 @@ function CreateTab(params)
 end
 
 
---Toggle
 -- Function to create a toggle
 function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
@@ -78,7 +77,7 @@ function CreateToggle(params)
     toggleButton.Text = params.Name
     toggleButton.TextSize = 24
     toggleButton.Font = Enum.Font.DenkOne
-    toggleButton.TextColor3 = Color3.new(1, 1, 1)
+    toggleButton.TextColor3 = Color3.new(0, 0, 0)  -- White when off
     toggleButton.TextStrokeTransparency = 1
 
     local filePath = "VortexClientSV.json"
