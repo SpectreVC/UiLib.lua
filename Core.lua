@@ -1,6 +1,6 @@
 local player = game.Players.LocalPlayer
 
--- Function to create a tab
+
 function CreateTab(params)
     local playerGui = player:WaitForChild("PlayerGui")
     local screenGui = Instance.new("ScreenGui")
@@ -48,7 +48,7 @@ function CreateTab(params)
     return tabFrame
 end
 
--- Function to create a toggle
+
 function CreateToggle(params)
     local toggleButton = Instance.new("TextButton")
     toggleButton.Name = params.Name
@@ -62,13 +62,14 @@ function CreateToggle(params)
     toggleButton.TextColor3 = Color3.new(1, 1, 1)
     toggleButton.TextStrokeTransparency = 1
     toggleButton.MouseButton1Click:Connect(function()
-        params.Callback(not toggleButton:IsA("TextButton") or not toggleButton.IsA(toggleButton, "Pressed"))
+        params.Callback(not toggleButton:IsA("TextButton") or not toggleButton:IsA(toggleButton, "Pressed"))
+        toggleButton.TextColor3 = toggleButton:IsA(toggleButton, "Pressed") and Color3.new(0.5, 0, 0.8) or Color3.new(1, 1, 1)
     end)
 
     return toggleButton
 end
 
--- Define CreateTabToggle function
+
 function CreateTabToggle(params)
     local button = Instance.new("TextButton")
     button.Name = "ToggleTabsButton"
@@ -91,10 +92,14 @@ function CreateTabToggle(params)
     uiCorner.CornerRadius = UDim.new(0, 8)
     uiCorner.Parent = button
 
+    local tabEnabled = false
+
     button.MouseButton1Click:Connect(function()
-        params.Callback(not button:IsA("TextButton") or not button.IsA(button, "Pressed"))
+        tabEnabled = not tabEnabled
+        params.Callback(tabEnabled)
     end)
 
     return button
 end
+
 
