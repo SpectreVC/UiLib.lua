@@ -61,8 +61,9 @@ function CreateToggle(params)
     local gradient = Instance.new("UIGradient")
     gradient.Rotation = 90
     gradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),  -- White when off
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(148, 0, 211))  -- Purple when on
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 40)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(30, 30, 60)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 70))
     }
     gradient.Parent = toggleButton
 
@@ -78,7 +79,7 @@ function CreateToggle(params)
     toggleButton.Text = params.Name
     toggleButton.TextSize = 24
     toggleButton.Font = Enum.Font.DenkOne
-    toggleButton.TextColor3 = Color3.new(1, 1, 1)  -- White when off
+    toggleButton.TextColor3 = Color3.new(1, 1, 1)
     toggleButton.TextStrokeTransparency = 1
 
     local filePath = "VortexClientSV.json"
@@ -102,16 +103,19 @@ function CreateToggle(params)
         isToggled = not isToggled
         params.Callback(isToggled)
 
-        toggleButton.TextColor3 = isToggled and Color3.new(1, 1, 1) or Color3.new(0, 0, 0)
-        toggleButton.BackgroundColor3 = isToggled and Color3.new(0.5, 0, 0.8) or Color3.new(1, 1, 1)
+        toggleButton.TextColor3 = isToggled and Color3.new(1, 0, 1) or Color3.new(1, 1, 1)
+        toggleButton.BackgroundColor3 = isToggled and Color3.new(0.5, 0, 0.8) or Color3.new(0, 0, 0)
 
         toggleStates[params.Name] = isToggled
         writefile(filePath, game.HttpService:JSONEncode(toggleStates))
     end)
 
+    -- Set initial colors based on the initial state
+    toggleButton.TextColor3 = isToggled and Color3.new(1, 0, 1) or Color3.new(1, 1, 1)
+    toggleButton.BackgroundColor3 = isToggled and Color3.new(0.5, 0, 0.8) or Color3.new(0, 0, 0)
+
     return toggleButton
 end
-
 
 
 -- TabToggle
