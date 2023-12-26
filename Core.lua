@@ -70,8 +70,6 @@ end
 
 -- Define CreateTabToggle function
 function CreateTabToggle(params)
-    print("Creating Tab Toggle...")
-
     local button = Instance.new("TextButton")
     button.Name = "ToggleTabsButton"
     button.Parent = screenGui  -- Make sure to have screenGui defined
@@ -94,11 +92,9 @@ function CreateTabToggle(params)
     uiCorner.Parent = button
 
     button.MouseButton1Click:Connect(function()
-        print("Tab Toggle Clicked!")
         params.Callback(not button:IsA("TextButton") or not button.IsA(button, "Pressed"))
     end)
 
-    print("Tab Toggle Created.")
     return button
 end
 
